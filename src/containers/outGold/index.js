@@ -1,7 +1,7 @@
 import React from 'react'
 import style from  "./index.css"
 import { connect } from 'react-redux';
-import { List, InputItem, Button } from 'antd-mobile';
+import { List, InputItem, Button,WingBlank } from 'antd-mobile';
 
 
 class OutGold extends React.Component{
@@ -16,7 +16,7 @@ class OutGold extends React.Component{
 
         return(
             <div className={style.wrap} >
-                <div className="part1">
+                <div className={style.part1}>
                     <List >
                         <InputItem
                             defaultValue={this.props.foreignExchange.bankName+" "+this.props.foreignExchange.bankNo}
@@ -28,25 +28,23 @@ class OutGold extends React.Component{
                             defaultValue={"$ "+this.props.foreignExchange.accountBalance}
                             type="bankCard"
                             editable={false}
-                            className={style.Apphh}
                             style={{textAlign:"right"}}
                         >账户余额</InputItem>
                     </List>
                 </div>
-
-
                 <List >
                     <InputItem
                         placeholder="输入金额，最低50美元"
                         extra="$"
                         style={{textAlign:"right"}}
+
                     >价格</InputItem>
                 </List>
-                <div className="tip">
+                <div className={style.tip}>
                         <span className={style.left}>
                             合人民币：<span></span>
                         </span>
-                    <span className="right">
+                    <span className={style.right}>
                             当前汇率：{this.props.foreignExchange.exchangeRate}
                         </span>
                 </div>
@@ -58,17 +56,21 @@ class OutGold extends React.Component{
                     >支付密码</InputItem>
 
                 </List>
-                <div className="tip">
+                <div className={style.tip}>
                         <span className={style.left}>
                             注：支付密码即登录密码
                         </span>
-                    <span className="right">
-                        <a href="javascript:void (0)">
+                    <span className={style.right}>
+                        <a className={style.forpass} href="javascript:void (0)">
                             忘记密码？
                         </a>
                     </span>
                 </div>
-
+                <div className={style.button}>
+                    <WingBlank size="lg">
+                        <Button type="primary">确认出金</Button>
+                    </WingBlank>
+                </div>
             </div>
         )
 
@@ -83,6 +85,7 @@ function mapStateToProps(state, props) {
 
 function mapDispatchToProps(dispatch) {
   return {
+
   }
 }
 

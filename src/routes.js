@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Router, IndexRoute, hashHistory} from 'react-router'
+import {Route, Router,IndexRoute, hashHistory} from 'react-router'
 import Home from './containers/home/'
 import OutGold from './containers/outGold/'
 import InGold from './containers/inGold/'
