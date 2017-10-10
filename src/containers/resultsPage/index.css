@@ -1,0 +1,24 @@
+.result-example .icon {
+    width: 120px;
+    height: 120px;
+}
+.result-example .icon>img{
+    width: 120px;
+    height: 120px;
+}
+.shtitle{
+    color: #f4c645;
+}
+.shmsg{
+    color: #f4c645;
+}
+.am-result .am-result-pic {
+    width: 120px!important;
+    height: 120px!important;
+    margin: 0 auto;
+    line-height: 120px!important;
+    background-size: 120px 120px!important;
+}
+.am-result-pic{
+    background-image: url("./images/shenhe.png");
+}
