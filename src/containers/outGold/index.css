@@ -1,0 +1,18 @@
+/*:local(.Apphh) {*/
+    /*color:red*/
+/*}*/
+.part1{
+    margin-bottom: 12px;
+}
+.tip{
+    line-height: 28px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 0 15px;
+    color: #aaa;
+}
+.right>a{
+      color: #5262ff;
+}
