@@ -6,17 +6,17 @@ let initialState = {
     inGoldBanks: [
         {
             key: 1,
-            name: '中国银行'
+            label: '中国银行'
         },
         {
             key: 2,
-            name: '工商银行'
+            label: '工商银行'
         },{
             key: 3,
-            name: '建设银行'
+            label: '建设银行'
         },{
             key: 4,
-            name: '农业银行'
+            label: '农业银行'
         }
     ]
 }
