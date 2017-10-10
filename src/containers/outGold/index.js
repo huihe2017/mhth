@@ -1,58 +1,61 @@
 import React from 'react'
-import style from  "./index.css"
-import { connect } from 'react-redux';
-import { List, InputItem, Button,WingBlank } from 'antd-mobile';
+import style from "./index.css"
+import {connect} from 'react-redux'
+import {List, InputItem, Button, WingBlank, Toast} from 'antd-mobile'
 
 
-class OutGold extends React.Component{
-    constructor(props){
+class OutGold extends React.Component {
+    constructor(props) {
         super(props);
-        this.state = {
+        this.state = {}
+    }
 
-        }
-	}
-	render(){
-        console.log('2222',this.props.foreignExchange);
+    outGold() {
+        Toast.success("sgegheh", 1, null, false)
+    }
 
-        return(
-            <div className={style.wrap} >
+    render() {
+        console.log('2222', this.props.foreignExchange);
+
+        return (
+            <div className={style.wrap}>
                 <div className={style.part1}>
-                    <List >
+                    <List>
                         <InputItem
-                            defaultValue={this.props.foreignExchange.bankName+" "+this.props.foreignExchange.bankNo}
+                            defaultValue={this.props.foreignExchange.bankName + " " + this.props.foreignExchange.bankNo}
                             type="bankCard"
                             editable={false}
-                            style={{textAlign:"right"}}
+                            style={{textAlign: "right"}}
                         >出金账户</InputItem>
                         <InputItem
-                            defaultValue={"$ "+this.props.foreignExchange.accountBalance}
+                            defaultValue={"$ " + this.props.foreignExchange.accountBalance}
                             type="bankCard"
                             editable={false}
-                            style={{textAlign:"right"}}
+                            style={{textAlign: "right"}}
                         >账户余额</InputItem>
                     </List>
                 </div>
-                <List >
+                <List>
                     <InputItem
                         placeholder="输入金额，最低50美元"
                         extra="$"
-                        style={{textAlign:"right"}}
-
+                        style={{textAlign: "right"}}
+                        ref="currentPassword"
                     >价格</InputItem>
                 </List>
                 <div className={style.tip}>
                         <span className={style.left}>
                             合人民币：<span></span>
                         </span>
-                    <span className={style.right}>
+                    <span  className={style.right}>
                             当前汇率：{this.props.foreignExchange.exchangeRate}
                         </span>
                 </div>
-                <List >
+                <List>
                     <InputItem
                         type="password"
                         placeholder="输入支付密码"
-                        style={{textAlign:"right"}}
+                        style={{textAlign: "right"}}
                     >支付密码</InputItem>
 
                 </List>
@@ -68,29 +71,26 @@ class OutGold extends React.Component{
                 </div>
                 <div className={style.button}>
                     <WingBlank size="lg">
-                        <Button type="primary">确认出金</Button>
+                        <Button onClick={this.outGold} type="primary">确认出金</Button>
                     </WingBlank>
                 </div>
             </div>
         )
 
-	}
+    }
 }
 
 function mapStateToProps(state, props) {
-  return {
-	  foreignExchange:state.foreignExchange
-  }
+    return {
+        foreignExchange: state.foreignExchange
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-
-  }
+    return {}
 }
 
 OutGold = connect(mapStateToProps, mapDispatchToProps)(OutGold)
-
 
 
 export default OutGold;
