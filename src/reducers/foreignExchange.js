@@ -5,17 +5,17 @@ let initialState = {
     exchangeRate: 0.346435,
     inGoldBanks: [
         {
-            key: 1,
+            value: 1,
             label: '中国银行'
         },
         {
-            key: 2,
+            value: 2,
             label: '工商银行'
         },{
-            key: 3,
+            value: 3,
             label: '建设银行'
         },{
-            key: 4,
+            value: 4,
             label: '农业银行'
         }
     ]

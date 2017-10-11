@@ -7,11 +7,21 @@ import {List, InputItem, Button, WingBlank, Toast} from 'antd-mobile'
 class OutGold extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            outGoldValue:'',
+            outGoldPwd:''
+        }
     }
 
     outGold() {
-        Toast.success("sgegheh", 1, null, false)
+        if(!this.state.outGoldValue){
+            Toast.fail("请输入出金金额", 3, null, false)
+            return false
+        }
+        if(!this.state.outGoldPwd){
+            Toast.fail("请输入出金密码", 3, null, false)
+            return false
+        }
     }
 
     render() {
@@ -40,7 +50,8 @@ class OutGold extends React.Component {
                         placeholder="输入金额，最低50美元"
                         extra="$"
                         style={{textAlign: "right"}}
-                        ref="currentPassword"
+                        value={this.state.outGoldValue}
+                        onChange={(value)=>{this.setState({outGoldValue:value})}}
                     >价格</InputItem>
                 </List>
                 <div className={style.tip}>
@@ -56,6 +67,8 @@ class OutGold extends React.Component {
                         type="password"
                         placeholder="输入支付密码"
                         style={{textAlign: "right"}}
+                        value={this.state.outGoldPwd}
+                        onChange={(value)=>{this.setState({outGoldPwd:value})}}
                     >支付密码</InputItem>
 
                 </List>
@@ -71,7 +84,7 @@ class OutGold extends React.Component {
                 </div>
                 <div className={style.button}>
                     <WingBlank size="lg">
-                        <Button onClick={this.outGold} type="primary">确认出金</Button>
+                        <Button onClick={this.outGold.bind(this)} type="primary">确认出金</Button>
                     </WingBlank>
                 </div>
             </div>
