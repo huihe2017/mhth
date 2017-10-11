@@ -3,7 +3,8 @@ import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,WingBlank,Button,ImagePicker,Picker } from "antd-mobile"
 
-const data = [];
+const data = [
+];
 const bank=[
     {
         value: 0,
