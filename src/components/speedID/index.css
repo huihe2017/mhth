@@ -1,0 +1,35 @@
+
+:local(.selimg){
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+:local(.img){
+    width: 150px;
+    height: 120px;
+}
+:local(.part1){
+    margin-bottom: 12px;
+}
+:local(.tip){
+    line-height: 28px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 0 15px;
+    color: #aaa;
+}
+:local(.hint){
+    padding: 0 15px;
+    margin-top: 7px;
+    font-size: 14px;
+    line-height: 27px;
+}
+:local(.hinth){
+    color: #5262ff;
+}
+:local(.hintc)>p{
+    margin: 0;
+    color: #656b6f;
+}

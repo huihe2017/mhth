@@ -33,7 +33,6 @@ class GetAccount extends React.Component {
                 {this.showtab()}
             </div>
         )
-
     }
     showtab(){
         if(this.state.state=='0'){

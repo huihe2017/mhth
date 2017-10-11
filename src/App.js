@@ -3,6 +3,7 @@ import configureStore from './store/configureStore'
 import createRouter from './routes'
 import { Provider } from 'react-redux';
 import 'antd-mobile/dist/antd-mobile.css';
+import './common.css';
 
 const store = configureStore(window.__initState__)
 console.log(store.getState())

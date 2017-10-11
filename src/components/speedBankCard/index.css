@@ -1,0 +1,13 @@
+:local(.hint){
+    padding: 0 15px;
+    margin-top: 7px;
+    font-size: 14px;
+    line-height: 27px;
+}
+:local(.hinth){
+    color: #5262ff;
+}
+:local(.hintc)>p{
+    margin: 0;
+    color: #656b6f;
+}

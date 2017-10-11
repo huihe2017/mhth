@@ -3,46 +3,53 @@ import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,WingBlank,Button,ImagePicker,TextareaItem } from "antd-mobile"
 
-const data = [];
+const data1 = [];
+const data2 = [];
 
 class PersonalMsg extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            files: data,
+            files1: data1,
+            files2: data2,
         }
     }
 
-    onChange = (files, type, index) => {
+    onChange1 = (files, type, index) => {
         console.log(files, type, index);
+        console.log(this.state)
         this.setState({
-            files,
+            files1:files
+        });
+    }
+    onChange2 = (files, type, index) => {
+        console.log(files, type, index);
+        console.log(this.state,111)
+        this.setState({
+            files2:files
         });
     }
 
     render() {
-        const { files } = this.state;
-        console.log('2222', this.props.foreignExchange)
+
         return (
             <div className={style.wrap}>
                 <div className={style.selimg}>
                     <div className={style.img}>
                         <ImagePicker
-                            files={files}
-                            onChange={this.onChange}
+                            files={this.state.files1}
+                            onChange={this.onChange1}
                             onImageClick={(index, fs) => console.log(index, fs)}
-                            selectable={files.length < 1}
+                            selectable={this.state.files1.length < 1}
                         />
                     </div><div className={style.img}>
                         <ImagePicker
-                            files={files}
-                            onChange={this.onChange}
+                            files={this.state.files2}
+                            onChange={this.onChange2}
                             onImageClick={(index, fs) => console.log(index, fs)}
-                            selectable={files.length < 1}
+                            selectable={this.state.files2.length < 1}
                         />
                     </div>
-
-
                 </div>
                 <List >
                     <InputItem
