@@ -5,8 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/header/index.css" afterPath="$PROJECT_DIR$/src/components/header/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/header/index.js" afterPath="$PROJECT_DIR$/src/components/header/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/history/index.js" afterPath="$PROJECT_DIR$/src/containers/history/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/home/index.js" afterPath="$PROJECT_DIR$/src/containers/home/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,8 +21,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/header/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="34" column="32" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+            <state relative-caret-position="209">
+              <caret line="74" column="33" lean-forward="true" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -32,11 +30,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="common.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/common.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/header/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+            <state relative-caret-position="186">
+              <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -66,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/home/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+            <state relative-caret-position="190">
+              <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -111,6 +119,7 @@
       <find>forss</find>
       <find>submitFn</find>
       <find>upper</find>
+      <find>1414</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,9 +155,9 @@
         <option value="$PROJECT_DIR$/src/containers/detailUserMsg/index.js" />
         <option value="$PROJECT_DIR$/src/containers/school/index.js" />
         <option value="$PROJECT_DIR$/src/containers/history/index.js" />
+        <option value="$PROJECT_DIR$/src/containers/home/index.js" />
         <option value="$PROJECT_DIR$/src/components/header/index.css" />
         <option value="$PROJECT_DIR$/src/components/header/index.js" />
-        <option value="$PROJECT_DIR$/src/containers/home/index.js" />
       </list>
     </option>
   </component>
@@ -211,12 +220,6 @@
               <item name="mhth" type="b2602c69:ProjectViewProjectNode" />
               <item name="mhth" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mhth" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mhth" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -263,12 +266,12 @@
       <option name="presentableId" value="Default" />
       <updated>1507615721375</updated>
       <workItem from="1507615731798" duration="25127000" />
-      <workItem from="1507688463411" duration="39838000" />
+      <workItem from="1507688463411" duration="44139000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64965000" />
+    <option name="totallyTimeSpent" value="69266000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="876" y="12" width="1023" height="1006" extended-state="0" />
@@ -715,31 +718,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/home/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/header/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        <state relative-caret-position="186">
+          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/header/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="34" column="32" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        <state relative-caret-position="209">
+          <caret line="74" column="33" lean-forward="true" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/home/index.js">
+    <entry file="file://$PROJECT_DIR$/src/common.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="266">
+          <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "./index.css"
 import {Drawer} from 'antd-mobile';
-import {hashHistory} from 'react-router';
+import {hashHistory, Link} from 'react-router';
 
 class Header extends React.Component {
     constructor(props) {
@@ -81,10 +81,17 @@ class Header extends React.Component {
 
         return (
             <div>
-                <div className={this.state.otherStyle ? ( style.wrap + ' ' + style[this.state.position] + ' ' + style.otherStyle) : ( style.wrap + ' ' + style[this.state.position])}>
-                    <div className={style.logo}><img src={require("./logoO.png")}/></div>
+                <div
+                    className={this.state.otherStyle ? ( style.wrap + ' ' + style[this.state.position] + ' ' + style.otherStyle) : ( style.wrap + ' ' + style[this.state.position])}>
+                    <div className={style.logo}>
+                        {
+                            this.state.otherStyle ? <Link to="/"><img src={require("./logoO.png")}/></Link> :
+                                <Link to="/">
+                                    <img src={require("./logo.png")}/>
+                                </Link>
+                        }
+                    </div>
                     <div onClick={this.onOpenChange} className={style.sider}>
-                        1414
                     </div>
 
                 </div>
@@ -97,7 +104,6 @@ class Header extends React.Component {
                     position="right"
                     onOpenChange={this.onOpenChange}
                 >
-
                 </Drawer>
             </div>
         )
