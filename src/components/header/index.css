@@ -10,3 +10,22 @@
 .my-drawer {
     position: relative!important;
 }
+:local(.wrap.absolute) {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+}
+:local(.wrap.relative) {
+    position: relative;
+}
+:local(.wrap.otherStyle) {
+    color: #656b6f;
+    background: #fff;
+}
+:local(.wrap.fixed) {
+    /*color: #656b6f;*/
+    /*background: #fff;*/
+    position: fixed;
+    width:100%
+
+}

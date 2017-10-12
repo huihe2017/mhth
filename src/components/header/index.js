@@ -5,9 +5,10 @@ import {hashHistory} from 'react-router';
 
 class Header extends React.Component {
     constructor(props) {
+        console.log(hashHistory)
         super(props);
         this.state = {
-            open: true,
+            open: false,
             position: 'relative',
             otherStyle: true
 
@@ -21,9 +22,10 @@ class Header extends React.Component {
     componentWillMount() {
         this.choceType()
     }
+
     componentWillReceiveProps() {
         console.log(hashHistory)
-        if (hashHistory.getCurrentLocation().pathname !== '/') {
+        if (window.location.hash.substr(1).indexOf('/') !== -1) {
             this.setState({position: 'relative'})
             this.setState({otherStyle: true})
             window.onscroll = null
@@ -36,8 +38,9 @@ class Header extends React.Component {
         }
         return true
     }
+
     choceType() {
-        if (hashHistory.getCurrentLocation().pathname === '/') {
+        if (window.location.hash.substr(1).indexOf('/') !== -1) {
             this.setState({position: 'absolute'})
             this.setState({otherStyle: false})
             let dance = document.body.clientWidth * 0.46
@@ -64,6 +67,7 @@ class Header extends React.Component {
             }
         }
     }
+
     componentWillUnmount() {
 
     }
@@ -77,7 +81,7 @@ class Header extends React.Component {
 
         return (
             <div>
-                <div className={style.wrap}>
+                <div className={this.state.otherStyle ? ( style.wrap + ' ' + style[this.state.position] + ' ' + style.otherStyle) : ( style.wrap + ' ' + style[this.state.position])}>
                     <div className={style.logo}><img src={require("./logoO.png")}/></div>
                     <div onClick={this.onOpenChange} className={style.sider}>
                         1414
@@ -88,9 +92,10 @@ class Header extends React.Component {
                     className="my-drawer"
                     style={{minHeight: document.documentElement.clientHeight - 200}}
                     contentStyle={{}}
-                    sidebar={<div style={{width:200,height:400,background:'red'}} ></div>}
+                    sidebar={<div style={{width: 200, height: 400, background: 'red'}}></div>}
                     open={this.state.open}
-                    // onOpenChange={()=>{alert(13331)}}
+                    position="right"
+                    onOpenChange={this.onOpenChange}
                 >
 
                 </Drawer>

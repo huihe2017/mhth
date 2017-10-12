@@ -1,12 +1,13 @@
 import React from 'react'
 import style from './index.css'
 import { Button } from 'antd-mobile'
-
+import Header from '../../components/header'
 
 class Home extends React.Component {
     render() {
         return(
             <div>
+                <Header/>
                 <header className={style.header}>
                     <div className={style.button}>
                         <Button className="btn" type="primary" style={{width:'130px',height:'50px',lineHeight:'50px'}}>极速开户</Button>
