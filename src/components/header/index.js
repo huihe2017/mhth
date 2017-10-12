@@ -1,6 +1,6 @@
 import React from 'react';
 import style from "./index.css"
-import {Drawer} from 'antd-mobile';
+import {Drawer,List} from 'antd-mobile';
 import {hashHistory, Link} from 'react-router';
 
 class Header extends React.Component {
@@ -78,7 +78,12 @@ class Header extends React.Component {
     }
 
     render() {
-
+        const Array=[{label:'登录与注册',link:''},{label:'首页',link:""},{label:'产品交易',link:''},{label:'交易平台',link:''},{label:'关于海豚汇',link:''},{label:'合伙人计划',link:''},{label:'海豚学院',link:''},{label:'账户出金',link:''},{label:'账户入金',link:''},{label:'用户资料',link:''},{label:'更改密码',link:''},{label:'历史记录',link:''}]
+        const sidebar = (<List>
+            {Array.map((i, index) => {
+                return (<List.Item herf={i.link} className={style.navlist} key={index}>{i.label}</List.Item>);
+            })}
+        </List>);
         return (
             <div>
                 <div
@@ -93,13 +98,12 @@ class Header extends React.Component {
                     </div>
                     <div onClick={this.onOpenChange} className={style.sider}>
                     </div>
-
                 </div>
                 <Drawer
                     className="my-drawer"
                     style={{minHeight: document.documentElement.clientHeight - 200}}
                     contentStyle={{}}
-                    sidebar={<div style={{width: 200, height: 400, background: 'red'}}></div>}
+                    sidebar={sidebar}
                     open={this.state.open}
                     position="right"
                     onOpenChange={this.onOpenChange}

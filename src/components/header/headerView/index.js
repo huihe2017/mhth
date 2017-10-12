@@ -33,15 +33,14 @@ export default class Header extends Component {
                     className={this.props.otherStyle ? ( style.header + ' ' + style[this.props.position] + ' ' + style.otherStyle) : ( style.header + ' ' + style[this.props.position])}>
                     <div className={style.logo}>
                         {
-                            this.props.otherStyle ? <Link to="/"><img src={require("./logoO.png")}/></Link> :
+                            this.props.otherStyle ? <Link to="/"><img className={style.logoimg} src={require("./logoO.png")}/></Link> :
                                 <Link to="/">
-                                    <img src={require("./logo.png")}/>
+                                    <img className={style.logoimg} src={require("./logo.png")}/>
                                 </Link>
                         }
-
                     </div>
                     <div className={style.line}></div>
-                    <div className={style.nav} >
+                    <div className={style.nav}>
                         <div className={style.personCenter}>
                             <Link to="/userCenter">
                                 <HeaderNav showBorder={(() => {return this.checkedForPath('/userCenter')})()} content="个人中心" ischangecolor={this.props.otherStyle} />
