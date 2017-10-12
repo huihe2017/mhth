@@ -2,6 +2,7 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import {List, InputItem, Button, WingBlank, Toast} from 'antd-mobile'
+import {hashHistory} from 'react-router'
 
 
 class OutGold extends React.Component {
@@ -22,6 +23,8 @@ class OutGold extends React.Component {
             Toast.fail("请输入出金密码", 3, null, false)
             return false
         }
+        hashHistory.push('/resultsPage')
+
     }
 
     render() {
@@ -100,7 +103,9 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+
+    }
 }
 
 OutGold = connect(mapStateToProps, mapDispatchToProps)(OutGold)

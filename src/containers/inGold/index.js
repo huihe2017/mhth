@@ -2,6 +2,7 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux';
 import {List, InputItem, Button, WingBlank, NoticeBar, Picker, Toast} from 'antd-mobile';
+import {hashHistory} from 'react-router'
 
 
 class InGold extends React.Component {
@@ -22,6 +23,8 @@ class InGold extends React.Component {
             Toast.fail("请选择支付网银", 3, null, false)
             return false
         }
+        hashHistory.push('/resultsPage')
+
     }
 
     render() {

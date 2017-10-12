@@ -17,7 +17,7 @@ class SpeedAccount extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            state:1
+            state:0
         }
     }
 

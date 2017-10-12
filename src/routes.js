@@ -6,6 +6,13 @@ import InGold from './containers/inGold/'
 import ModifyPwd from './containers/modifyPwd/'
 import ResultsPage from './containers/resultsPage/'
 import GetAccount from './containers/getAccount/'
+import SpeedAccount from './containers/speedAccount/'
+import AboutUs from './containers/aboutUs/'
+import School from './containers/school/'
+import History from './containers/history/'
+import ForgetPwd from './containers/forgetPwd/'
+import TradingPlatform from './containers/tradingPlatform/'
+import Auth from './containers/auth/'
 
 
 export default () => {
@@ -19,8 +26,13 @@ export default () => {
             <Route path="/modifyPwd" component={ModifyPwd}/>
             <Route path="/resultsPage" component={ResultsPage}/>
             <Route path="/getAccount" component={GetAccount}/>
-
-
+            <Route path="/speedAccount" component={SpeedAccount}/>
+            <Route path="/aboutUs" component={AboutUs}/>
+            <Route path="/school" component={School}/>
+            <Route path="/history" component={History}/>
+            <Route path="/forgetPwd" component={ForgetPwd}/>
+            <Route path="/tradingPlatform" component={TradingPlatform}/>
+            <Route path="/auth" component={Auth}/>
 
         </Router>
     )

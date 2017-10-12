@@ -2,13 +2,17 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,Button,WingBlank} from 'antd-mobile';
+import {hashHistory} from 'react-router'
+
 
 class ModifyPwd extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
     }
-
+    submitFn() {
+        hashHistory.push('/resultsPage')
+    }
     render() {
         console.log('2222', this.props.foreignExchange)
         return (
@@ -32,7 +36,7 @@ class ModifyPwd extends React.Component {
                 </List>
                 <div className={style.button}>
                     <WingBlank size="lg">
-                        <Button type="primary">确认入金</Button>
+                        <Button onClick={this.submitFn.bind(this)} type="primary">确认入金</Button>
                     </WingBlank>
                 </div>
             </div>

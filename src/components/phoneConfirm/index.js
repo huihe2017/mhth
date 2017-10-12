@@ -1,15 +1,25 @@
 import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
-import { List,InputItem,WingBlank,Button } from "antd-mobile"
-
+import { List,InputItem,WingBlank,Button,Toast} from "antd-mobile"
+import { getAccountStep } from '../../actions/foreignExchange'
+import { bindActionCreators } from 'redux'
 
 class PhoneConfirm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            code:''
+        }
     }
+    submitFn(){
+        if(!this.state.code){
+            Toast.fail("请输入验证码", 3, null, false)
+            return false
+        }
+        this.props.getAccountStep(1)
 
+    }
     render() {
         console.log('2222', this.props.foreignExchange)
         return (
@@ -23,11 +33,13 @@ class PhoneConfirm extends React.Component {
                     <InputItem
                         extra="获取验证码"
                         placeholder="输入验证码"
+                        value={this.state.code}
+                        onChange={(value)=>{this.setState({code:value})}}
                     />
                 </List>
                 <div className={style.button}>
                     <WingBlank size="lg">
-                        <Button type="primary">下一步</Button>
+                        <Button onClick={this.submitFn.bind(this)} type="primary">下一步</Button>
                     </WingBlank>
                 </div>
             </div>
@@ -41,7 +53,10 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+        getAccountStep: bindActionCreators(getAccountStep, dispatch)
+
+    }
 }
 
 PhoneConfirm = connect(mapStateToProps, mapDispatchToProps)(PhoneConfirm)

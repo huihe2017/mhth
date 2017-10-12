@@ -3,6 +3,7 @@ let initialState = {
     bankNo: '145*********352',
     accountBalance: 2354,
     exchangeRate: 0.346435,
+    getAccountStep:0,
     inGoldBanks: [
         {
             value: 1,
@@ -25,9 +26,9 @@ export default function foreignExchange(state = initialState, action = {}) {
 
     switch (action.type) {
 
-        case 'outGold':
+        case 'GETACCOUNT_STEP':
             return Object.assign({}, state, {
-                show: true
+                getAccountStep: action.step
             })
 
         case 'inGold':

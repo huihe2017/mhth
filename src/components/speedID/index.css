@@ -5,8 +5,8 @@
     justify-content: space-around;
 }
 :local(.img){
-    width: 150px;
-    height: 120px;
+    /*width: 150px;*/
+    /*height: 120px;*/
 }
 :local(.part1){
     margin-bottom: 12px;

@@ -1,7 +1,9 @@
 import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
-import { List,InputItem,WingBlank,Button,ImagePicker,Picker } from "antd-mobile"
+import {hashHistory} from 'react-router'
+import { List,InputItem,WingBlank,Button,ImagePicker,Picker} from "antd-mobile"
+import { Uploader,UploadField } from '@navjobs/upload'
 
 const data = [
 ];
@@ -68,7 +70,9 @@ class BankCardMsg extends React.Component {
             files,
         });
     }
-
+    submitFn(){
+        hashHistory.push('/resultsPage')
+    }
     render() {
         const { files } = this.state;
         console.log('2222', this.props.foreignExchange)
@@ -76,12 +80,46 @@ class BankCardMsg extends React.Component {
             <div className={style.wrap}>
                 <div className={style.selimg}>
                     <div className={style.img}>
-                        <ImagePicker
-                            files={files}
-                            onChange={this.onChange}
-                            onImageClick={(index, fs) => console.log(index, fs)}
-                            selectable={files.length < 1}
-                        />
+                        {/*<ImagePicker*/}
+                            {/*files={files}*/}
+                            {/*onChange={this.onChange}*/}
+                            {/*onImageClick={(index, fs) => console.log(index, fs)}*/}
+                            {/*selectable={files.length < 1}*/}
+                        {/*/>*/}
+                        <div>
+                            <Uploader
+                                request={{
+                                    fileName: 'file',
+                                    url: 'https://upload.com',
+                                    method: 'POST',
+                                    fields: {
+                                        //extra fields to pass with the request
+                                        full_name: 'Testing extra fields',
+                                    },
+                                    headers: {
+                                        //custom headers to send along
+                                        Authorization: 'Bearer: Test',
+                                    },
+                                    // use credentials for cross-site requests
+                                    withCredentials: false,
+                                }}
+                                onComplete={({ response, status }) => {}}
+                                //upload on file selection, otherwise use `startUpload`
+                                uploadOnSelection={true}
+                            >
+                                {({ onFiles, progress, complete }) => (
+                                    <div>
+                                        <UploadField onFiles={onFiles}>
+                                            <div>
+                                                click
+                                            </div>
+                                        </UploadField>
+                                        {progress ? `Progress: ${progress}` : null}
+                                        {complete ? 'Complete!' : null}
+                                    </div>
+                                )}
+                            </Uploader>
+                        </div>
                     </div>
                 </div>
                 <List >
@@ -111,7 +149,7 @@ class BankCardMsg extends React.Component {
                 </List>
                 <div className={style.button}>
                     <WingBlank size="lg">
-                        <Button type="primary">下一步</Button>
+                        <Button onClick={this.submitFn.bind(this)} type="primary">下一步</Button>
 
                     </WingBlank>
                 </div>

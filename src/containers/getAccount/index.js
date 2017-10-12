@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import BankCardMsg from '../../components/bankCardMsg';
 import PersonalMsg from '../../components/personalMsg';
 import PhoneConfirm from '../../components/phoneConfirm';
-import { Steps } from "antd-mobile"
+import {Steps} from "antd-mobile"
 
 const Step = Steps.Step;
 
@@ -14,39 +14,37 @@ const steps = [{
     title: '联络人信息'
 }, {
     title: '银行卡信息'
-}].map((s, i) => <Step key={i} title={s.title} description={s.description} />);
+}].map((s, i) => <Step key={i} title={s.title} description={s.description}/>);
 
 
 class GetAccount extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            state:1
-        }
-    }
 
     render() {
-        console.log('2222', this.props.foreignExchange)
+        let step = this.props.foreignExchange.getAccountStep
         return (
             <div className={style.wrap}>
-                <Steps current={this.state.state} direction="horizontal">{steps}</Steps>
+                <Steps current={step} direction="horizontal">{steps}</Steps>
                 {this.showtab()}
             </div>
         )
     }
-    showtab(){
-        if(this.state.state=='0'){
+
+    showtab() {
+        let step = this.props.foreignExchange.getAccountStep
+        if (step == '0') {
             return <PhoneConfirm/>
-        }else if(this.state.state=='1'){
+        } else if (step == '1') {
             return <PersonalMsg/>
-        }else if(this.state.state=='2'){
+        } else if (step == '2') {
             return <BankCardMsg/>
         }
     }
 }
 
 function mapStateToProps(state, props) {
-    return {}
+    return {
+        foreignExchange:state.foreignExchange
+    }
 }
 
 function mapDispatchToProps(dispatch) {
