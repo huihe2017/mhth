@@ -1,8 +1,7 @@
 :local(.wrap){
-    padding: 0 15px;
 }
 :local(.header){
-
+    padding: 0 15px;
     padding-top: 24px;
 }
 :local(.htitle){
@@ -19,6 +18,7 @@
     border-bottom: 1px solid #dfdce4;
 }
 :local(.content){
+    padding: 0 15px;
     padding-top: 10px;
 }
 :local(.content)>p{

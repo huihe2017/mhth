@@ -2,6 +2,7 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,Button,WingBlank,Picker} from 'antd-mobile';
+import Header from '../../components/header'
 
 class ForgetPwd extends React.Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class ForgetPwd extends React.Component {
         return (
             <div className={style.wrap}>
 
-
+                <Header/>
                     <section className={style.content}>
                         <span className={style.title}>
                         忘记密码？

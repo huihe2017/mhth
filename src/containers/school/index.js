@@ -2,6 +2,8 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,Button,WingBlank} from 'antd-mobile';
+import Header from '../../components/header'
+
 class School extends React.Component {
     constructor(props) {
         super(props);
@@ -11,6 +13,7 @@ class School extends React.Component {
     render() {
         return (
             <div className={style.wrap}>
+                <Header/>
                 <header className={style.header}>
                     <p className={style.htitle}>
                         海豚学院

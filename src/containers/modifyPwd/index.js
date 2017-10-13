@@ -3,6 +3,7 @@ import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,Button,WingBlank} from 'antd-mobile';
 import {hashHistory} from 'react-router'
+import Header from '../../components/header'
 
 
 class ModifyPwd extends React.Component {
@@ -17,6 +18,7 @@ class ModifyPwd extends React.Component {
         console.log('2222', this.props.foreignExchange)
         return (
             <div className={style.wrap}>
+                <Header/>
                 <List >
                     <InputItem
                         style={{textAlign:"right"}}

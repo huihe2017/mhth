@@ -4,13 +4,14 @@
 }
 :local(.logo){
     margin: 0 auto;
-    margin-top: 20px;
     margin-bottom: 30px;
+    padding-top: 20px;
     width: 70px;
-    height: 70px;
+    height: 90px;
     background-image: url("./images/矢量智能对象@3x.png");
     background-size: contain;
-
+    background-repeat: no-repeat;
+    background-position:0 20px;
 }
 :local(.nav){
     display: flex;

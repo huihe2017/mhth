@@ -2,6 +2,7 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,TextareaItem} from 'antd-mobile';
+import Header from '../../components/header'
 
 class DetailUserMsg extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class DetailUserMsg extends React.Component {
     render() {
         return (
             <div className={style.wrap}>
+                <Header/>
                 <div className={style.part}>
                     <header className={style.header}>
                         <span className={style.title}>

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import { Steps } from 'antd-mobile';
 import SpeedBankCard from '../../components/speedBankCard';
 import SpeedID from '../../components/speedID';
+import Header from '../../components/header'
 
 const Step = Steps.Step;
 
@@ -24,6 +25,7 @@ class SpeedAccount extends React.Component {
     render() {
         return (
             <div className={style.wrap}>
+                <Header/>
                 <Steps current={this.state.state} direction="horizontal">{steps}</Steps>
                 {this.showtab()}
             </div>

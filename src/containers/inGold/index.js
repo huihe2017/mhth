@@ -3,6 +3,7 @@ import style from "./index.css"
 import {connect} from 'react-redux';
 import {List, InputItem, Button, WingBlank, NoticeBar, Picker, Toast} from 'antd-mobile';
 import {hashHistory} from 'react-router'
+import Header from '../../components/header'
 
 
 class InGold extends React.Component {
@@ -32,6 +33,7 @@ class InGold extends React.Component {
 
         return (
             <div className={style.wrap}>
+                <Header/>
                 <NoticeBar icon={null} style={{textAlign: "center", backgroundColor: "#f39392", color: "#fff"}}
                 >尚未开户，当前可入金额：美元$5000</NoticeBar>
                 <List>

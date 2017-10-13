@@ -7,18 +7,50 @@
     height: 120px;
 }
 .shtitle{
-    color: #f4c645;
+    color: #3b3d40;
+    font-size: 18px;
 }
 .shmsg{
-    color: #f4c645;
+    color: #aaa;
+    font-size: 12px;
 }
-.am-result .am-result-pic {
-    width: 120px!important;
-    height: 120px!important;
+:local(.wrap){
+
+}
+:local(.wrap)>img{
+    display: block;
+    width: 100px;
+    height: 100px;
     margin: 0 auto;
-    line-height: 120px!important;
-    background-size: 120px 120px!important;
 }
-.am-result-pic{
-    background-image: url("./images/shenhe.png");
+:local(.rtitle){
+    font-size: 18px;
+    color: #3b3d40;
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 12px;
 }
+:local(.rcontent){
+    font-size: 12px;
+    color: #aaaaaa;
+    text-align: center;
+    display: block;
+}
+:local(.but){
+    width:150px;
+    height:40px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+:local(.but)>a{
+    display: block;
+    color: #fff;
+    border-radius: 5px;
+    width:150px;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #5262ff;
+}
+

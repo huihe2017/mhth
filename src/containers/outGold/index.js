@@ -3,6 +3,7 @@ import style from "./index.css"
 import {connect} from 'react-redux'
 import {List, InputItem, Button, WingBlank, Toast} from 'antd-mobile'
 import {hashHistory} from 'react-router'
+import Header from '../../components/header'
 
 
 class OutGold extends React.Component {
@@ -32,6 +33,7 @@ class OutGold extends React.Component {
 
         return (
             <div className={style.wrap}>
+                <Header/>
                 <div className={style.part1}>
                     <List>
                         <InputItem

@@ -2,6 +2,7 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,Button,WingBlank} from 'antd-mobile';
+import Header from '../../components/header'
 
 class BaseUserMsg extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class BaseUserMsg extends React.Component {
     render() {
         return (
             <div className={style.wrap}>
+                <Header/>
                 <div className={style.part}>
                     <List>
                         <InputItem

@@ -5,6 +5,7 @@ import BankCardMsg from '../../components/bankCardMsg';
 import PersonalMsg from '../../components/personalMsg';
 import PhoneConfirm from '../../components/phoneConfirm';
 import {Steps} from "antd-mobile"
+import Header from '../../components/header'
 
 const Step = Steps.Step;
 
@@ -23,6 +24,7 @@ class GetAccount extends React.Component {
         let step = this.props.foreignExchange.getAccountStep
         return (
             <div className={style.wrap}>
+                <Header/>
                 <Steps current={step} direction="horizontal">{steps}</Steps>
                 {this.showtab()}
             </div>

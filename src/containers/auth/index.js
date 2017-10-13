@@ -2,6 +2,7 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import { List,InputItem,Button,WingBlank,Picker} from 'antd-mobile';
+import Header from '../../components/header'
 
 class Auth extends React.Component {
     constructor(props) {
@@ -32,6 +33,7 @@ class Auth extends React.Component {
         }
         return (
             <div className={style.wrap}>
+                <Header/>
                 <div className={style.logo}></div>
                 <nav className={style.nav}>
                     <div>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Layer from '../../../renderLayer/index'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import style from './sideBar.css'
 import {hashHistory} from 'react-router';
 
