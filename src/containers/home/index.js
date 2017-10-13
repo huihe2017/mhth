@@ -6,7 +6,7 @@ import Header from '../../components/header'
 class Home extends React.Component {
     render() {
         return(
-            <div>
+            <div className={style.wrap}>
                 <Header/>
                 <header className={style.header}>
                     <div className={style.button}>

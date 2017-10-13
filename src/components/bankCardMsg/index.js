@@ -78,8 +78,8 @@ class BankCardMsg extends React.Component {
         console.log('2222', this.props.foreignExchange)
         return (
             <div className={style.wrap}>
-                <div className={style.selimg}>
-                    <div className={style.img}>
+                <div >
+                    <div className={style.selimggrp}>
                         {/*<ImagePicker*/}
                             {/*files={files}*/}
                             {/*onChange={this.onChange}*/}
@@ -110,8 +110,8 @@ class BankCardMsg extends React.Component {
                                 {({ onFiles, progress, complete }) => (
                                     <div>
                                         <UploadField onFiles={onFiles}>
-                                            <div>
-                                                click
+                                            <div className={style.selimg}>
+                                                <span className={style.filetext}>点击上传银行卡正面</span>
                                             </div>
                                         </UploadField>
                                         {progress ? `Progress: ${progress}` : null}

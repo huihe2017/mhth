@@ -6,6 +6,7 @@ import {getAccountStep} from '../../actions/foreignExchange'
 import {bindActionCreators} from 'redux'
 import Fileupload from 'react-fileupload'
 import { Uploader,UploadField } from '@navjobs/upload'
+
 const data1 = [];
 const data2 = [];
 
@@ -43,7 +44,7 @@ class PersonalMsg extends React.Component {
 
         return (
             <div className={style.wrap}>
-                <div className={style.selimg}>
+                <div className={style.selimggrp}>
                     {/*<div className={style.img}>*/}
                         {/*<ImagePicker*/}
                             {/*files={this.state.files1}*/}
@@ -110,9 +111,11 @@ class PersonalMsg extends React.Component {
                             {({ onFiles, progress, complete }) => (
                                 <div>
                                     <UploadField onFiles={onFiles}>
-                                        <div>
-                                            click
-                                        </div>
+
+                                            <div className={style.selimg}>
+                                                <span className={style.filetext}>点击上传身份证人像面</span>
+                                            </div>
+
                                     </UploadField>
                                     {progress ? `Progress: ${progress}` : null}
                                     {complete ? 'Complete!' : null}
@@ -144,8 +147,8 @@ class PersonalMsg extends React.Component {
                             {({ onFiles, progress, complete }) => (
                                 <div>
                                     <UploadField onFiles={onFiles}>
-                                        <div>
-                                            click
+                                        <div className={style.selimg}>
+                                            <span className={style.filetext}>点击上传身份证国徽面</span>
                                         </div>
                                     </UploadField>
                                     {progress ? `Progress: ${progress}` : null}

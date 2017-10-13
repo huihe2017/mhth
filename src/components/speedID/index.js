@@ -2,6 +2,8 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import { ImagePicker,Button,WingBlank} from 'antd-mobile';
+import Fileupload from 'react-fileupload'
+import { Uploader,UploadField } from '@navjobs/upload'
 
 const data1 = [];
 const data2 = [];
@@ -32,23 +34,118 @@ class SpeedID extends React.Component {
         const { files } = this.state;
         return (
             <div className={style.wrap}>
-                <div className={style.selimg}>
-                    <div className={style.img}>
-                        <ImagePicker
-                            files={this.state.files1}
-                            onChange={this.onChange1}
-                            onImageClick={(index, fs) => console.log(index, fs)}
-                            selectable={this.state.files1.length < 1}
-                        />
+                <div className={style.selimggrp}>
+                    {/*<div className={style.img}>*/}
+                    {/*<ImagePicker*/}
+                    {/*files={this.state.files1}*/}
+                    {/*onChange={this.onChange1}*/}
+                    {/*onImageClick={(index, fs) => console.log(index, fs)}*/}
+                    {/*selectable={this.state.files1.length < 1}*/}
+                    {/*/>*/}
+                    {/*</div>*/}
+                    {/*<div className={style.img}>*/}
+                    {/*<ImagePicker*/}
+                    {/*files={this.state.files2}*/}
+                    {/*onChange={this.onChange2}*/}
+                    {/*onImageClick={(index, fs) => console.log(index, fs)}*/}
+                    {/*selectable={this.state.files2.length < 1}*/}
+                    {/*/>*/}
+                    {/*</div>*/}
 
+                    {/*<div>*/}
+                    {/*<Fileupload options={{*/}
+                    {/*baseUrl: '/node/api',*/}
+                    {/*param: {*/}
+                    {/*_c: 'file',*/}
+                    {/*_a: 'UploadFile'*/}
+                    {/*},*/}
+                    {/*multiple: true,*/}
+                    {/*numberLimit: ()=>{},*/}
+                    {/*accept: 'image/*',*/}
+                    {/*fileFieldName(file) {*/}
+                    {/*return file.rawID*/}
+                    {/*},*/}
+                    {/*chooseAndUpload: true,*/}
+                    {/*wrapperDisplay: 'block',*/}
+                    {/*beforeUpload: ()=>{},*/}
+                    {/*uploading: ()=>{},*/}
+                    {/*uploadSuccess: ()=>{},*/}
+                    {/*uploadFail: ()=>{},*/}
+                    {/*uploadError: ()=>{}*/}
+                    {/*}}>*/}
+                    {/*<button >wtew</button>*/}
+                    {/*</Fileupload>*/}
+                    {/*</div>*/}
+
+                    <div>
+                        <Uploader
+                            request={{
+                                fileName: 'file',
+                                url: 'https://upload.com',
+                                method: 'POST',
+                                fields: {
+                                    //extra fields to pass with the request
+                                    full_name: 'Testing extra fields',
+                                },
+                                headers: {
+                                    //custom headers to send along
+                                    Authorization: 'Bearer: Test',
+                                },
+                                // use credentials for cross-site requests
+                                withCredentials: false,
+                            }}
+                            onComplete={({ response, status }) => {}}
+                            //upload on file selection, otherwise use `startUpload`
+                            uploadOnSelection={true}
+                        >
+                            {({ onFiles, progress, complete }) => (
+                                <div>
+                                    <UploadField onFiles={onFiles}>
+
+                                        <div className={style.selimg}>
+                                            <span className={style.filetext}>点击上传身份证人像面</span>
+                                        </div>
+
+                                    </UploadField>
+                                    {progress ? `Progress: ${progress}` : null}
+                                    {complete ? 'Complete!' : null}
+                                </div>
+                            )}
+                        </Uploader>
                     </div>
-                    <div className={style.img}>
-                        <ImagePicker
-                            files={this.state.files2}
-                            onChange={this.onChange2}
-                            onImageClick={(index, fs) => console.log(index, fs)}
-                            selectable={this.state.files2.length < 1}
-                        />
+                    <div>
+                        <Uploader
+                            request={{
+                                fileName: 'file',
+                                url: 'https://upload.com',
+                                method: 'POST',
+                                fields: {
+                                    //extra fields to pass with the request
+                                    full_name: 'Testing extra fields',
+                                },
+                                headers: {
+                                    //custom headers to send along
+                                    Authorization: 'Bearer: Test',
+                                },
+                                // use credentials for cross-site requests
+                                withCredentials: false,
+                            }}
+                            onComplete={({ response, status }) => {}}
+                            //upload on file selection, otherwise use `startUpload`
+                            uploadOnSelection={true}
+                        >
+                            {({ onFiles, progress, complete }) => (
+                                <div>
+                                    <UploadField onFiles={onFiles}>
+                                        <div className={style.selimg}>
+                                            <span className={style.filetext}>点击上传身份证国徽面</span>
+                                        </div>
+                                    </UploadField>
+                                    {progress ? `Progress: ${progress}` : null}
+                                    {complete ? 'Complete!' : null}
+                                </div>
+                            )}
+                        </Uploader>
                     </div>
                 </div>
                 <div className={style.button}>
