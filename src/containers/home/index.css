@@ -51,6 +51,7 @@
 }
 :local(.advtitle){
     padding-left: 30px;
+    color: #3b3d40;
 }
 :local(.mt4){
     height: 130px;
@@ -111,6 +112,7 @@
 }
 :local(.partitle){
     font-size: 18px;
+    color: #3b3d40;
 }
 :local(.partner)>ul{
     margin-top: 15px;

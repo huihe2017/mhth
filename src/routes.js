@@ -13,7 +13,8 @@ import History from './containers/history/'
 import ForgetPwd from './containers/forgetPwd/'
 import TradingPlatform from './containers/tradingPlatform/'
 import Auth from './containers/auth/'
-import ForexPresentation from './containers/forexPresentation'
+import ForexPresentation from './containers/forexPresentation/'
+import DetailUserMsg from './containers/detailUserMsg/'
 
 
 export default () => {
@@ -35,6 +36,7 @@ export default () => {
             <Route path="/tradingPlatform" component={TradingPlatform}/>
             <Route path="/forexPresentation" component={ForexPresentation}/>
             <Route path="/auth" component={Auth}/>
+            <Route path="/detailUserMsg" component={DetailUserMsg}/>
 
         </Router>
     )

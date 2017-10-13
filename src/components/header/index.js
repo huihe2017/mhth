@@ -78,10 +78,14 @@ class Header extends React.Component {
     }
 
     render() {
-        const Array=[{label:'登录与注册',link:''},{label:'首页',link:""},{label:'产品交易',link:''},{label:'交易平台',link:''},{label:'关于海豚汇',link:''},{label:'合伙人计划',link:''},{label:'海豚学院',link:''},{label:'账户出金',link:''},{label:'账户入金',link:''},{label:'用户资料',link:''},{label:'更改密码',link:''},{label:'历史记录',link:''}]
+        const Array=[{label:'登录与注册',link:'/auth'},{label:'首页',link:'/'},{label:'产品交易',link:'/forexPresentation'},{label:'交易平台',link:'/tradingPlatform'},{label:'关于海豚汇',link:'/aboutUs'},{label:'海豚学院',link:'/school'},{label:'账户出金',link:'/outgold'},{label:'账户入金',link:'/ingold'},{label:'用户资料',link:'/detailUserMsg'},{label:'更改密码',link:'/modifyPwd'},{label:'历史记录',link:'/history'}]
         const sidebar = (<List>
             {Array.map((i, index) => {
-                return (<List.Item herf={i.link} className={style.navlist} key={index}>{i.label}</List.Item>);
+                return (<List.Item className={style.navlist} key={index}>
+                    <Link to={i.link}>
+                        {i.label}
+                    </Link>
+                    </List.Item>);
             })}
         </List>);
         return (
