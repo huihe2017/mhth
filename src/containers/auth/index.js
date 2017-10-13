@@ -1,35 +1,70 @@
 import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
-import { List,InputItem,Button,WingBlank,Picker} from 'antd-mobile';
+import {List, InputItem, Button, Picker, Toast} from 'antd-mobile';
+import {login} from '../../actions/user'
+import {bindActionCreators} from 'redux'
+import {hashHistory} from 'react-router'
 import Header from '../../components/header'
 
 class Auth extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            login:true
+            login: true,
+            areaCode: [86],
+            picCode: '',
+            picImg: this.getPicImg(),
+            phone: '',
+            pwd: ''
         }
     }
 
+    getPicImg() {
+        return <img onTouchEnd={(e) => {
+            e.target.src = 'http://47.91.236.245:4030/user/image-captcha?tm=' + Math.random()
+        }}
+                    className={style.tuxing}
+                    src={"http://47.91.236.245:4030/user/image-captcha?tm=" + Math.random()}/>
+    }
 
+    submitFn() {
+        if(this.state.login){
+            Toast.loading('登录中', 0)
+            this.props.login({
+                phone: this.state.areaCode + " " + this.state.phone,
+                pwd: this.state.pwd,
+                picCode: this.state.picCode
+            }, (errorText) => {
+                this.setState({picImg:this.getPicImg()})
+                Toast.hide()
+                if (errorText) {
+                    Toast.fail(errorText, 3, null, false)
+                } else {
+                    hashHistory.push('/')
+                }
+            })
+        }
+
+
+    }
 
     render() {
-        const quhao=[
+        const quhao = [
             {
-                value:1,
-                label:"中国大陆  +86"
-            },{
-                value:2,
-                label:"中国台湾  +87"
-            },{
-                value:3,
-                label:"中国香港  +88"
+                value: 86,
+                label: "中国大陆  +86"
+            }, {
+                value: 87,
+                label: "中国台湾  +87"
+            }, {
+                value: 88,
+                label: "中国香港  +88"
             },
 
         ]
-        let show={
-            display:this.state.login?'none':'block'
+        let show = {
+            display: this.state.login ? 'none' : 'block'
         }
         return (
             <div className={style.wrap}>
@@ -37,34 +72,42 @@ class Auth extends React.Component {
                 <div className={style.logo}></div>
                 <nav className={style.nav}>
                     <div>
-                        <span id={this.state.login?style.active:""} onClick={this.toreg.bind(this)}>登录</span>
+                        <span id={this.state.login ? style.active : ""} onClick={this.toreg.bind(this)}>登录</span>
                     </div>
                     <div>
-                        <span id={this.state.login?"":style.active} onClick={this.tolog.bind(this)}>注册</span>
+                        <span id={this.state.login ? "" : style.active} onClick={this.tolog.bind(this)}>注册</span>
                     </div>
                 </nav>
                 <section className={style.content}>
                     <div className={style.selphone}>
                         <div className={style.qh}>
-                            <Picker data={quhao} cols={1} className="forss">
-                                <List.Item arrow="horizontal"> </List.Item>
+                            <Picker onChange={(value) => {
+                                this.setState({areaCode: value})
+                            }} format={(values) => {
+                                return values.join('').split(' ')[1]
+                            }} data={quhao} cols={1} value={86} className="forss">
+                                <List.Item arrow="horizontal"></List.Item>
                             </Picker>
                         </div>
                         <div className={style.line}></div>
                         <div className={style.phone}>
                             <List>
-                                <InputItem placeholder="请输入手机号" type="number"></InputItem>
+                                <InputItem onChange={(value) => {
+                                    this.setState({phone: value})
+                                }} placeholder="请输入手机号" type="number"></InputItem>
                             </List>
                         </div>
                     </div>
                     <div className={style.selphone}>
                         <div className={style.tu}>
                             <List>
-                                <InputItem placeholder="请输入图形验证码" type="text"></InputItem>
+                                <InputItem onChange={(value) => {
+                                    this.setState({picCode: value})
+                                }} placeholder="请输入图形验证码" type="text"></InputItem>
                             </List>
 
                         </div>
-                        <img className={style.tuxing} src="http://reso2.yiihuu.com/1331436-z.jpg" alt=""/>
+                        {this.state.picImg}
                     </div>
                     <div className={style.selphone} style={show}>
                         <div className={style.tu}>
@@ -79,15 +122,19 @@ class Auth extends React.Component {
                     <div className={style.selphone}>
                         <div className={style.tu}>
                             <List>
-                                <InputItem type="password" placeholder={this.state.login?'请输入密码':'请设置6-20位密码'}></InputItem>
+                                <InputItem type="password"
+                                           onChange={(value) => {
+                                               this.setState({pwd: value})
+                                           }}
+                                           placeholder={this.state.login ? '请输入密码' : '请设置6-20位密码'}></InputItem>
                             </List>
 
                         </div>
                     </div>
                     <div className={style.button}>
-                        <Button type="primary">
+                        <Button onClick={this.submitFn.bind(this)} type="primary">
                             {
-                                this.state.login?'立即登录':'立即注册'
+                                this.state.login ? '立即登录' : '立即注册'
                             }
                         </Button>
                     </div>
@@ -97,14 +144,15 @@ class Auth extends React.Component {
 
     }
 
-    toreg(){
+    toreg() {
         this.setState({
-            login:true
+            login: true
         })
     }
-    tolog(){
+
+    tolog() {
         this.setState({
-            login:false
+            login: false
         })
     }
 
@@ -116,7 +164,9 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+        login: bindActionCreators(login, dispatch)
+    }
 }
 
 Auth = connect(mapStateToProps, mapDispatchToProps)(Auth)

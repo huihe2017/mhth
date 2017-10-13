@@ -1,6 +1,6 @@
 import React from 'react';
 import style from "./index.css"
-import {Drawer,List} from 'antd-mobile';
+import {Drawer} from 'antd-mobile';
 import {hashHistory, Link} from 'react-router';
 
 class Header extends React.Component {
@@ -24,23 +24,22 @@ class Header extends React.Component {
     }
 
     componentWillReceiveProps() {
-        console.log(hashHistory)
-        if (window.location.hash.substr(1).indexOf('/') !== -1) {
-            this.setState({position: 'relative'})
-            this.setState({otherStyle: true})
-            window.onscroll = null
-            return true
-        } else {
-            if (!window.onscroll) {
-                this.choceType()
-                return true
-            }
-        }
-        return true
+        // if (window.location.hash.substr(1).indexOf('/') !== -1) {
+        //     this.setState({position: 'relative'})
+        //     this.setState({otherStyle: true})
+        //     window.onscroll = null
+        //     return true
+        // } else {
+        //     if (!window.onscroll) {
+        //         this.choceType()
+        //         return true
+        //     }
+        // }
+        // return true
     }
 
     choceType() {
-        if (window.location.hash.substr(1).indexOf('/') !== -1) {
+        if (window.location.hash.substr(1).indexOf('/?') !== -1) {
             this.setState({position: 'absolute'})
             this.setState({otherStyle: false})
             let dance = document.body.clientWidth * 0.46
@@ -79,15 +78,15 @@ class Header extends React.Component {
 
     render() {
         const Array=[{label:'登录与注册',link:'/auth'},{label:'首页',link:'/'},{label:'产品交易',link:'/tradingPlatform'},{label:'交易平台',link:'/forexPresentation'},{label:'关于海豚汇',link:'/aboutUs'},{label:'海豚学院',link:'/school'},{label:'账户出金',link:'/outgold'},{label:'账户入金',link:'/ingold'},{label:'用户资料',link:'/detailUserMsg'},{label:'更改密码',link:'/modifyPwd'},{label:'历史记录',link:'/history'}]
-        const sidebar = (<List>
+        const sidebar = (<ul style={{paddingTop:20}} >
             {Array.map((i, index) => {
-                return (<List.Item className={style.navlist} key={index}>
+                return (<li  className={style.navlist} key={index}>
                     <Link to={i.link}>
                         {i.label}
                     </Link>
-                    </List.Item>);
+                    </li>);
             })}
-        </List>);
+        </ul>);
         return (
             <div>
                 <div
@@ -105,12 +104,14 @@ class Header extends React.Component {
                 </div>
                 <Drawer
                     className="my-drawer"
-                    style={{minHeight: document.documentElement.clientHeight - 200}}
-                    contentStyle={{}}
+                    style={{minHeight: document.documentElement.clientHeight - 200,position:'fixed',zIndex:this.state.open?100:-1}}
                     sidebar={sidebar}
                     open={this.state.open}
                     position="right"
+                    // contentStyle={{zIndex:this.state.open?98:-1}}
+                    // overlayStyle={{zIndex:this.state.open?99:-1}}
                     onOpenChange={this.onOpenChange}
+                    sidebarStyle={{background:'#656b6f'}}
                 >
                 </Drawer>
             </div>

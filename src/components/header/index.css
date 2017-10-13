@@ -1,6 +1,8 @@
 :local(.wrap) {
     height: 44px;
+    z-index: 2;
 }
+
 :local(.logo) {
      float: left;
     margin-left: 12px;
@@ -19,16 +21,14 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-.my-drawer {
-    position: fixed!important;
-}
+
 :local(.navlist){
     width: 160px;
     height: 40px;
 
 
 }
-:local(.navlist) a{
+:local(.navlist a){
     display: block;
     color: #fff;
     background-color: #656b6f;
@@ -37,7 +37,6 @@
 }
 :local(.wrap.absolute) {
     position: absolute;
-    z-index: 2;
     width: 100%;
 }
 :local(.wrap.relative) {
@@ -48,10 +47,7 @@
     background: #fff;
 }
 :local(.wrap.fixed) {
-    /*color: #656b6f;*/
-    /*background: #fff;*/
-    position: fixed;
-    z-index: 2;
-    width:100%
 
+    position: fixed;
+    width:100%
 }
