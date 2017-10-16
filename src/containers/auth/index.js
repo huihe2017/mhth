@@ -83,9 +83,10 @@ class Auth extends React.Component {
                         <div className={style.qh}>
                             <Picker onChange={(value) => {
                                 this.setState({areaCode: value})
+
                             }} format={(values) => {
                                 return values.join('').split(' ')[1]
-                            }} data={quhao} cols={1} value={86} className="forss">
+                            }}  extra='+86' data={quhao} cols={1} value={'86'}>
                                 <List.Item arrow="horizontal"></List.Item>
                             </Picker>
                         </div>

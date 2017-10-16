@@ -46,13 +46,53 @@ const data = [
         number: '1860684651644',
         state:'出金失败',
         way:'网银支付'
+    },{
+        title: '入金 +$1000',
+        time: 'Meet hotel',
+        number: '1860684651644',
+        state:'入金失败',
+        way:'网银支付'
+    },
+    {
+        title: '出金 -$100',
+        time: 'Meet hotel',
+        number: '1860684651644',
+        state:'出金失败',
+        way:'网银支付'
+    },
+    {
+        title: '出金 -$200',
+        time: 'Meet hotel',
+        number: '1860684651644',
+        state:'正在进行',
+        way:'网银支付'
+    },{
+        title: '入金 +$1000',
+        time: 'Meet hotel',
+        number: '1860684651644',
+        state:'入金失败',
+        way:'网银支付'
+    },
+    {
+        title: '出金 -$200',
+        time: 'Meet hotel',
+        number: '1860684651644',
+        state:'正在进行',
+        way:'网银支付'
+    },
+    {
+        title: '出金 -$500',
+        time: 'Meet hotel',
+        number: '1860684651644',
+        state:'出金失败',
+        way:'网银支付'
     },
 
 
 ];
 let index = data.length - 1;
 
-const NUM_ROWS = 20;
+const NUM_ROWS = 10;
 let pageIndex = 0;
 
 function genData(pIndex = 0) {
@@ -60,6 +100,7 @@ function genData(pIndex = 0) {
     for (let i = 0; i < NUM_ROWS; i++) {
         dataArr.push(`row - ${(pIndex * NUM_ROWS) + i}`);
     }
+    console.log(dataArr);
     return dataArr;
 }
 
@@ -230,13 +271,13 @@ class History extends React.Component {
                     style={{
                         height: this.state.height,
                         border: '1px solid #ddd',
-                        margin: '0.1rem 0',
+                        margin: '0.05rem 0',
                     }}
                     scrollerOptions={{ scrollbars: true, scrollingComplete: this.scrollingComplete }}
                     refreshControl={<RefreshControl
                         refreshing={this.state.refreshing}
                         onRefresh={this.onRefresh}
-                        // icon={this.renderCustomIcon()}
+                        icon={this.renderCustomIcon()}
                     />}
                     onScroll={this.onScroll}
                     scrollRenderAheadDistance={200}

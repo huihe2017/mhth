@@ -37,20 +37,20 @@
 :local(.advi1){
     height: 60px;
     width: 60px;
-    background-image: url("./images/资质合规@3x.png");
+    background-image: url("./images/zizhi@3x.png");
     background-size: cover;
 
 }
 :local(.advi2){
     height:60px;
     width: 60px;
-    background-image: url("./images/实力雄厚@3x.png");
+    background-image: url("./images/shili@3x.png");
     background-size: cover;
 }
 :local(.advi3){
     height: 60px;
     width: 60px;
-    background-image: url("./images/佣金实惠@3x.png");
+    background-image: url("./images/yongjin@3x.png");
     background-size: cover;
 }
 :local(.advtitle){
@@ -59,7 +59,7 @@
 }
 :local(.mt4){
     height: 130px;
-    background-image: url("./images/MT4背景3X.png");
+    background-image: url("./images/MT4bg3X.png");
     background-size: cover;
     padding: 0 15px;
     padding-top: 15px;
@@ -92,7 +92,7 @@
 :local(.phlogo1){
     width: 25px;
     height: 25px;
-    background-image: url("./images/苹果@3x.png");
+    background-image: url("./images/apple@3x.png");
     background-size: cover;
 
     margin-top: 7px;
@@ -100,7 +100,7 @@
 :local(.phlogo2){
     width: 25px;
     height: 25px;
-    background-image: url("./images/安卓@3x.png");
+    background-image: url("./images/android@3x.png");
     background-size: cover;
 
     margin-top: 7px;
