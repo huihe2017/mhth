@@ -14,6 +14,7 @@ class SpeedID extends React.Component {
         this.state = {
             files1: data1,
             files2: data2,
+            upImg:true
         }
     }
 
@@ -103,7 +104,7 @@ class SpeedID extends React.Component {
                                     <UploadField onFiles={onFiles}>
 
                                         <div className={style.selimg}>
-                                            <span className={style.filetext}>点击上传身份证人像面</span>
+                                            {this.state.upImg? <img src={require('../../containers/home/images/MT4bg3X.png')} alt=""/> : <span className={style.filetext}>点击上传身份证人像面</span>}
                                         </div>
 
                                     </UploadField>
@@ -138,7 +139,8 @@ class SpeedID extends React.Component {
                                 <div>
                                     <UploadField onFiles={onFiles}>
                                         <div className={style.selimg}>
-                                            <span className={style.filetext}>点击上传身份证国徽面</span>
+                                            {this.state.upImg? <img src={require('../../containers/home/images/MT4bg3X.png')} alt=""/> : <span className={style.filetext}>点击上传身份证国徽面</span>}
+
                                         </div>
                                     </UploadField>
                                     {progress ? `Progress: ${progress}` : null}

@@ -58,3 +58,10 @@
     font-size: 12px;
     color: #3b3d40;
 }
+:local(.selimg)>img{
+    width: 160px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

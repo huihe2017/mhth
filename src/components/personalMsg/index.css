@@ -55,6 +55,13 @@
     height: 1px;
     background-color: #dfdce4;
 }
+:local(.selimg)>img{
+    width: 160px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 :local(.filetext){
     display: block;
     position: absolute;

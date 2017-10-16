@@ -61,6 +61,7 @@ class BankCardMsg extends React.Component {
         super(props);
         this.state = {
             files: data,
+            upImg:true
         }
     }
 
@@ -68,6 +69,7 @@ class BankCardMsg extends React.Component {
         console.log(files, type, index);
         this.setState({
             files,
+
         });
     }
     submitFn(){
@@ -111,7 +113,7 @@ class BankCardMsg extends React.Component {
                                     <div>
                                         <UploadField onFiles={onFiles}>
                                             <div className={style.selimg}>
-                                                <span className={style.filetext}>点击上传银行卡正面</span>
+                                                {this.state.upImg? <img src={require('../../containers/home/images/MT4bg3X.png')} alt=""/> : <span className={style.filetext}>点击上传银行卡正面</span>}
                                             </div>
                                         </UploadField>
                                         {progress ? `Progress: ${progress}` : null}

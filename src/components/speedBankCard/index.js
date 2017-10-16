@@ -13,7 +13,7 @@ class SpeedBankCard extends React.Component {
         super(props);
         this.state = {
             files: data,
-
+            upImg:true
         }
     }
 
@@ -97,7 +97,7 @@ class SpeedBankCard extends React.Component {
                                     <UploadField onFiles={onFiles}>
 
                                         <div className={style.selimg}>
-                                            <span className={style.filetext}>点击上传银行卡正面</span>
+                                            {this.state.upImg? <img src={require('../../containers/home/images/MT4bg3X.png')} alt=""/> : <span className={style.filetext}>点击上传银行卡正面</span>}
                                         </div>
 
                                     </UploadField>
