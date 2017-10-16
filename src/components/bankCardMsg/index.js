@@ -132,15 +132,15 @@ class BankCardMsg extends React.Component {
                     >结算卡号</InputItem>
                     <Picker data={bank} cols={1} className="forss" onOk={() => this.setState({ visible: false })}
                             onDismiss={() => this.setState({ visible: false })}>
-                        <List.Item arrow="horizontal">选择银行网银支付</List.Item>
+                        <List.Item arrow="horizontal">银行名称</List.Item>
                     </Picker>
                     <Picker data={sheng} cols={1} className="forss" onOk={() => this.setState({ visible: false })}
                             onDismiss={() => this.setState({ visible: false })}>
-                        <List.Item arrow="horizontal">选择银行网银支付</List.Item>
+                        <List.Item arrow="horizontal">开户省份</List.Item>
                     </Picker>
                     <Picker data={city} cols={1} className="forss" onOk={() => this.setState({ visible: false })}
                             onDismiss={() => this.setState({ visible: false })}>
-                        <List.Item arrow="horizontal">选择银行网银支付</List.Item>
+                        <List.Item arrow="horizontal">开户市区</List.Item>
                     </Picker>
                     <InputItem
                         type="text"
