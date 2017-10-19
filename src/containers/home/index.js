@@ -3,10 +3,11 @@ import style from './index.css'
 import {Button} from 'antd-mobile'
 import Header from '../../components/header'
 import {hashHistory} from 'react-router'
+import {connect} from 'react-redux'
 
 class Home extends React.Component {
-    speedAccound() {
-        hashHistory.push('/auth')
+    speedAccound() {console.log('444',this.props.user)
+        this.props.user.token ? hashHistory.push('/speedAccount') : hashHistory.push('/auth')
     }
 
     render() {
@@ -116,5 +117,16 @@ class Home extends React.Component {
     }
 }
 
+function mapStateToProps(state, props) {
+    return {
+        user: state.user
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {}
+}
+
+Home = connect(mapStateToProps, mapDispatchToProps)(Home)
 
 export default Home

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Router,IndexRoute, hashHistory} from 'react-router'
+import {Route, Router, IndexRoute, hashHistory} from 'react-router'
 import Home from './containers/home/'
 import OutGold from './containers/outGold/'
 import InGold from './containers/inGold/'
@@ -37,7 +37,7 @@ export default () => {
             <Route path="/forexPresentation" component={ForexPresentation}/>
             <Route path="/auth" component={Auth}/>
             <Route path="/detailUserMsg" component={DetailUserMsg}/>
-                <Route path="/baseUserMsg" component={BaseUserMsg}/>
+            <Route path="/baseUserMsg" component={BaseUserMsg}/>
 
         </Router>
     )

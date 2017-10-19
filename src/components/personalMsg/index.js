@@ -14,30 +14,18 @@ class PersonalMsg extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            files1: data1,
-            files2: data2,
-            upImg:true
+            frontImg:'',
+            reverseImg:'',
+            realName:'',
+            id:'',
+            email:'',
+            address:''
         }
     }
 
-    onChange1 = (files, type, index) => {
-        console.log(files, type, index);
-        console.log(this.state)
-        this.setState({
-            files1: files
-        });
-    }
-    onChange2 = (files, type, index) => {
-        console.log(files, type, index);
-        console.log(this.state, 111)
-        this.setState({
-            files2: files
-        });
-    }
-
     submitFn() {
-
-        this.props.getAccountStep(2)
+        console.log("4444",this.state)
+        this.props.getAccountStep(2,this.state)
 
     }
 
@@ -92,7 +80,7 @@ class PersonalMsg extends React.Component {
                         <Uploader
                             request={{
                                 fileName: 'file',
-                                url: 'https://upload.com',
+                                url: 'http://47.91.236.245:4030/user/uploads',
                                 method: 'POST',
                                 fields: {
                                     //extra fields to pass with the request
@@ -100,12 +88,14 @@ class PersonalMsg extends React.Component {
                                 },
                                 headers: {
                                     //custom headers to send along
-                                    Authorization: 'Bearer: Test',
+                                    //Authorization: 'Bearer: Test',
                                 },
                                 // use credentials for cross-site requests
-                                withCredentials: false,
+                                withCredentials: true,
                             }}
-                            onComplete={({ response, status }) => {}}
+                            onComplete={({ response, status }) => {
+                                this.setState({frontImg:response.data})
+                            }}
                             //upload on file selection, otherwise use `startUpload`
                             uploadOnSelection={true}
                         >
@@ -113,11 +103,9 @@ class PersonalMsg extends React.Component {
                                 <div>
                                     <UploadField onFiles={onFiles}>
                                         <div className={style.selimg}>
-                                            {this.state.upImg? <img src={require('../../containers/home/images/MT4bg3X.png')} alt=""/> : <span className={style.filetext}>点击上传身份证人像面</span>}
+                                            {this.state.frontImg? <img src={`http://47.91.236.245:4030/${this.state.frontImg}`} alt=""/> : <span className={style.filetext}>点击上传身份证人像面</span>}
                                             </div>
                                     </UploadField>
-                                    {progress ? `Progress: ${progress}` : null}
-                                    {complete ? 'Complete!' : null}
                                 </div>
                             )}
                         </Uploader>
@@ -126,7 +114,7 @@ class PersonalMsg extends React.Component {
                         <Uploader
                             request={{
                                 fileName: 'file',
-                                url: 'https://upload.com',
+                                url: 'http://47.91.236.245:4030/user/uploads',
                                 method: 'POST',
                                 fields: {
                                     //extra fields to pass with the request
@@ -134,12 +122,14 @@ class PersonalMsg extends React.Component {
                                 },
                                 headers: {
                                     //custom headers to send along
-                                    Authorization: 'Bearer: Test',
+                                    //Authorization: 'Bearer: Test',
                                 },
                                 // use credentials for cross-site requests
-                                withCredentials: false,
+                                withCredentials: true,
                             }}
-                            onComplete={({ response, status }) => {}}
+                            onComplete={({ response, status }) => {
+                                this.setState({reverseImg:response.data})
+                            }}
                             //upload on file selection, otherwise use `startUpload`
                             uploadOnSelection={true}
                         >
@@ -147,11 +137,9 @@ class PersonalMsg extends React.Component {
                                 <div>
                                     <UploadField onFiles={onFiles}>
                                         <div className={style.selimg}>
-                                            {this.state.upImg? <img src={require('../../containers/home/images/MT4bg3X.png')} alt=""/> : <span className={style.filetext}>点击上传身份证国徽面</span>}
+                                            {this.state.reverseImg? <img src={`http://47.91.236.245:4030/${this.state.reverseImg}`} alt=""/> : <span className={style.filetext}>点击上传身份证国徽面</span>}
                                         </div>
                                     </UploadField>
-                                    {progress ? `Progress: ${progress}` : null}
-                                    {complete ? 'Complete!' : null}
                                 </div>
                             )}
                         </Uploader>
@@ -162,16 +150,19 @@ class PersonalMsg extends React.Component {
                         placeholder="输入需与身份证一致"
                         type="text"
                         style={{textAlign: "right"}}
+                        onChange={(value)=>{this.setState({realName:value})}}
                     >姓名</InputItem>
                     <InputItem
                         placeholder="输入15位或18位身份证号"
                         type="number"
                         style={{textAlign: "right"}}
+                        onChange={(value)=>{this.setState({id:value})}}
                     >身份证号码</InputItem>
                     <InputItem
                         type="text"
                         placeholder="输入邮箱"
                         style={{textAlign: "right"}}
+                        onChange={(value)=>{this.setState({email:value})}}
                     >邮箱(选填)</InputItem>
                     <TextareaItem
                         placeholder="输入需与身份证住址一致"
@@ -179,6 +170,7 @@ class PersonalMsg extends React.Component {
                         autoHeight
                         labelNumber={5}
                         style={{textAlign: "right"}}
+                        onChange={(value)=>{this.setState({address:value})}}
                     />
                 </List>
                 <div className={style.button}>

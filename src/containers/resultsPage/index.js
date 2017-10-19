@@ -2,64 +2,28 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import { Button } from 'antd-mobile';
-import { browserHistory } from 'react-router';
 import { Link} from 'react-router';
 import Header from '../../components/header'
 
-const customIcon = src => <img src={src} className="icon" />
 
 class ResultsPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            iconState:'wait',
-            titleState:'wait',
-            descriptionState:'wait',
-            buttonLink:'/'
-        }
     }
-
-    linkTo(){
-        browserHistory.push('#/')
-    }
-    showTitle(){
-        if(this.state.titleState=='wait'){
-            return '审核中'
-        }else if(this.state.titleState=='fail'){
-            return '支付失败'
-        }else if(this.state.titleState=='successPay'){
-            return '支付成功'
-        }else if(this.state.titleState=='successChange'){
-            return '修改成功'
-        }else if(this.state.titleState=='successApply'){
-            return '申请成功'
-        }
-    }
-    showDescription(){
-        if(this.state.titleState=='wait'){
-            return '将于1-3个工作日内审核账户信息，请耐心等待'
-        }else if(this.state.titleState=='successChange'){
-            return '系统奖自动退出，请重新登录'
-        }else if(this.state.titleState=='successApply'){
-            return '将于1-3个工作日内审核账户信息，请耐心等待'
-        }
-    }
-
     render() {
-        console.log('2222', this.props.foreignExchange)
 
         return (
             <div className={style.wrap}>
                 <Header/>
-                <img src={require(`./images/${this.state.iconState}.png`)} alt="icon"/>
+                <img src={require(`./images/${this.props.params.status}.png`)} alt="icon"/>
                 <span className={style.rtitle}>
-                    {this.showTitle()}
+                    {this.props.params.title}
                 </span>
                 <p className={style.rcontent}>
-                    {this.showDescription()}
+                    {this.props.params.describe}
                 </p>
                 <div className={style.but}>
-                    <Link to={this.state.buttonLink}>
+                    <Link to={this.props.params.path}>
                         确认
                     </Link>
                 </div>
@@ -70,7 +34,9 @@ class ResultsPage extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-    return {}
+    return {
+        params:state.resultsPage
+    }
 }
 
 function mapDispatchToProps(dispatch) {

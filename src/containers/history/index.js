@@ -4,6 +4,9 @@ import {connect} from 'react-redux'
 import { RefreshControl, ListView } from 'antd-mobile';
 import Header from '../../components/header'
 import ReactDOM from 'react-dom'
+import {hashHistory} from 'react-router'
+import {setAuthFrom} from '../../actions/authFrom'
+import {bindActionCreators} from 'redux'
 
 const data = [
     {
@@ -108,6 +111,7 @@ class History extends React.Component {
 
     constructor(props) {
         super(props);
+
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
@@ -118,8 +122,17 @@ class History extends React.Component {
             height: document.documentElement.clientHeight,
         };
     }
-
+    componentWillMount(){
+        if(!this.props.user.token){
+            this.props.setAuthFrom('/history',()=>{
+                hashHistory.push('/auth')
+            })
+        }
+    }
     componentDidMount() {
+        if(!this.props.user.token){
+            return false
+        }
         // Set the appropriate height
         setTimeout(() => this.setState({
             height: this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop,
@@ -294,11 +307,15 @@ class History extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-    return {}
+    return {
+        user:state.user
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+        setAuthFrom:bindActionCreators(setAuthFrom, dispatch)
+    }
 }
 
 History = connect(mapStateToProps, mapDispatchToProps)(History)

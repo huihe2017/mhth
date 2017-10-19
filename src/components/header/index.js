@@ -2,6 +2,7 @@ import React from 'react';
 import style from "./index.css"
 import {Drawer} from 'antd-mobile';
 import {hashHistory, Link} from 'react-router';
+import {connect} from 'react-redux'
 
 class Header extends React.Component {
     constructor(props) {
@@ -77,14 +78,26 @@ class Header extends React.Component {
     }
 
     render() {
-        const Array=[{label:'登录与注册',link:'/auth'},{label:'首页',link:'/'},{label:'产品交易',link:'/forexPresentation'},{label:'交易平台',link:'/tradingPlatform'},{label:'关于海豚汇',link:'/aboutUs'},{label:'海豚学院',link:'/school'},{label:'账户出金',link:'/outgold'},{label:'账户入金',link:'/ingold'},{label:'用户资料',link:'/detailUserMsg'},{label:'更改密码',link:'/modifyPwd'},{label:'历史记录',link:'/history'}]
-        const sidebar = (<ul style={{paddingTop:20}} >
+        const Array = [{
+            label: this.props.user.userName ? this.props.user.userName : '登录与注册',
+            link:  this.props.user.userName ? '/baseUserMsg' : '/auth'
+        }, {label: '首页', link: '/'}, {label: '产品交易', link: '/forexPresentation'}, {
+            label: '交易平台',
+            link: '/tradingPlatform'
+        }, {label: '关于海豚汇', link: '/aboutUs'}, {label: '海豚学院', link: '/school'}, {
+            label: '账户出金',
+            link: '/outgold'
+        }, {label: '账户入金', link: '/ingold'}, {label: '用户资料', link: '/detailUserMsg'}, {
+            label: '更改密码',
+            link: '/modifyPwd'
+        }, {label: '历史记录', link: '/history'}]
+        const sidebar = (<ul style={{paddingTop: 20}}>
             {Array.map((i, index) => {
-                return (<li  className={style.navlist} key={index}>
+                return (<li className={style.navlist} key={index}>
                     <Link to={i.link}>
                         {i.label}
                     </Link>
-                    </li>);
+                </li>);
             })}
         </ul>);
         return (
@@ -104,14 +117,18 @@ class Header extends React.Component {
                 </div>
                 <Drawer
                     className="my-drawer"
-                    style={{minHeight: document.documentElement.clientHeight - 200,position:'fixed',zIndex:this.state.open?100:-1}}
+                    style={{
+                        minHeight: document.documentElement.clientHeight - 200,
+                        position: 'fixed',
+                        zIndex: this.state.open ? 100 : -1
+                    }}
                     sidebar={sidebar}
                     open={this.state.open}
                     position="right"
                     // contentStyle={{zIndex:this.state.open?98:-1}}
                     // overlayStyle={{zIndex:this.state.open?99:-1}}
                     onOpenChange={this.onOpenChange}
-                    sidebarStyle={{background:'#656b6f'}}
+                    sidebarStyle={{background: '#656b6f'}}
                 >
                 </Drawer>
             </div>
@@ -119,4 +136,15 @@ class Header extends React.Component {
     }
 }
 
+function mapStateToProps(state, props) {
+    return {
+        user: state.user
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {}
+}
+
+Header = connect(mapStateToProps, mapDispatchToProps)(Header)
 export default Header;

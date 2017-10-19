@@ -2,10 +2,12 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import {List, InputItem, Button, Picker, Toast} from 'antd-mobile';
-import {login} from '../../actions/user'
+import {login, register} from '../../actions/user'
+import {setResultsPage} from '../../actions/resultsPage'
 import {bindActionCreators} from 'redux'
 import {hashHistory} from 'react-router'
 import Header from '../../components/header'
+import Countdown from '../../components/countdown'
 
 class Auth extends React.Component {
     constructor(props) {
@@ -16,7 +18,8 @@ class Auth extends React.Component {
             picCode: '',
             picImg: this.getPicImg(),
             phone: '',
-            pwd: ''
+            pwd: '',
+            code: ''
         }
     }
 
@@ -29,24 +32,96 @@ class Auth extends React.Component {
     }
 
     submitFn() {
-        if(this.state.login){
-            Toast.loading('登录中', 0)
+        if (this.state.login) {
+            if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(this.state.phone)) {
+                Toast.fail('请输入正确的手机格式', 3, null, false)
+                return false
+            }
+            if (!this.state.picCode) {
+                Toast.fail('请输入验证码', 3, null, false)
+                return false
+            }
+            if (!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,21}$/.test(this.state.pwd)) {
+                Toast.fail('密码格式错误', 3, null, false)
+                return false
+            }
+            Toast.loading('登录中', 3, null, false)
             this.props.login({
                 phone: this.state.areaCode + " " + this.state.phone,
                 pwd: this.state.pwd,
                 picCode: this.state.picCode
             }, (errorText) => {
-                this.setState({picImg:this.getPicImg()})
+                this.setState({picImg: this.getPicImg()})
                 Toast.hide()
                 if (errorText) {
                     Toast.fail(errorText, 3, null, false)
                 } else {
-                    hashHistory.push('/')
+                    if (this.props.authFrom.path) {
+                        hashHistory.push(this.props.authFrom.path)
+                    } else {
+                        hashHistory.push('/')
+                    }
+                }
+            })
+        } else {
+            if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(this.state.phone)) {
+                Toast.fail('请输入正确的手机格式', 3, null, false)
+                return false
+            }
+            if (!this.state.picCode) {
+                Toast.fail('请输入验证码', 3, null, false)
+                return false
+            }
+            if (!this.state.code) {
+                Toast.fail('请输入短信验证码', 3, null, false)
+                return false
+            }
+            if (!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,21}$/.test(this.state.pwd)) {
+                Toast.fail('密码格式错误', 3, null, false)
+                return false
+            }
+            Toast.loading('注册中', 3, null, false)
+            this.props.register({
+                phone: this.state.areaCode + " " + this.state.phone,
+                pwd: this.state.pwd,
+                code: this.state.code
+            }, (errorText) => {
+                this.setState({picImg: this.getPicImg()})
+                Toast.hide()
+                if (errorText) {
+                    Toast.fail(errorText, 3, null, false)
+
+                } else {
+                    if (this.props.authFrom.path&&this.props.authFrom.path === '/speedAccount') {
+                            hashHistory.push(this.props.authFrom.path)
+                    } else {
+                        this.props.setResultsPage({
+                            title:'注册成功',
+                            path:'/',
+                            status:1
+                        },()=>{
+                            hashHistory.push('/resultsPage')
+                        })
+                    }
+
                 }
             })
         }
 
 
+    }
+
+
+    checkPhone() {
+        if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(this.state.phone)) {
+            Toast.fail('请输入正确的手机格式', 3, null, false)
+            return false
+        }
+        if (!this.state.picCode) {
+            Toast.fail('请输入验证码', 3, null, false)
+            return false
+        }
+        return true
     }
 
     render() {
@@ -85,8 +160,9 @@ class Auth extends React.Component {
                                 this.setState({areaCode: value})
 
                             }} format={(values) => {
-                                return values.join('').split(' ')[1]
-                            }}  extra='+86' data={quhao} cols={1} value={'86'}>
+                                console.log(values)
+                                return values.join('').split(' ')[2]
+                            }} data={quhao} cols={1} value={this.state.areaCode}>
                                 <List.Item arrow="horizontal"></List.Item>
                             </Picker>
                         </div>
@@ -113,7 +189,14 @@ class Auth extends React.Component {
                     <div className={style.selphone} style={show}>
                         <div className={style.tu}>
                             <List>
-                                <InputItem placeholder="请输入验证码" type="text" extra="获取验证码"></InputItem>
+                                <Countdown
+                                    beforeClick={this.checkPhone.bind(this)}
+                                    phone={this.state.phone}
+                                    picCode={this.state.picCode}
+                                    business='REGISTER'
+                                    failCallback={()=>{this.setState({picImg: this.getPicImg()})}}
+                                    onChange={(value) => {this.setState({code: value})}}
+                                />
                             </List>
 
                         </div>
@@ -138,6 +221,7 @@ class Auth extends React.Component {
                                 this.state.login ? '立即登录' : '立即注册'
                             }
                         </Button>
+
                     </div>
                 </section>
             </div>
@@ -161,12 +245,16 @@ class Auth extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-    return {}
+    return {
+        authFrom: state.authFrom
+    }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        login: bindActionCreators(login, dispatch)
+        login: bindActionCreators(login, dispatch),
+        register: bindActionCreators(register, dispatch),
+        setResultsPage:bindActionCreators(setResultsPage, dispatch)
     }
 }
 

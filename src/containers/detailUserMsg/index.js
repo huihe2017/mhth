@@ -1,13 +1,40 @@
 import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
-import { List,InputItem,TextareaItem} from 'antd-mobile';
+import { List,InputItem,TextareaItem,Toast} from 'antd-mobile';
 import Header from '../../components/header'
+import {hashHistory} from 'react-router'
+import {setAuthFrom} from '../../actions/authFrom'
+import {getDetailMsg} from '../../actions/user'
+import {bindActionCreators} from 'redux'
 
 class DetailUserMsg extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
+    }
+    componentWillMount(){
+        if(!this.props.user.token){
+            this.props.setAuthFrom('/detailUserMsg',()=>{
+                hashHistory.push('/auth')
+            })
+        }else{
+            if(this.props.user.status==='27'){
+
+            }else {
+                hashHistory.push('/getAccount')
+            }
+        }
+    }
+
+    componentDidMount(){
+        this.props.getDetailMsg({
+
+        }, (errorText) => {
+            if (errorText) {
+                Toast.fail(errorText, 3, null, false)
+            }
+        })
     }
 
     render() {
@@ -26,17 +53,17 @@ class DetailUserMsg extends React.Component {
 
                     <List >
                         <InputItem
-                            value="大大飞机"
+                            value={this.props.user.realName}
                             editable={false}
                             style={{textAlign:'right'}}
                         >姓名</InputItem>
                         <InputItem
-                            value="40068686868686868"
+                            value={this.props.user.id}
                             editable={false}
                             style={{textAlign:'right'}}
                         >身份证号码</InputItem>
                         <InputItem
-                            value="xxx@xxx.com"
+                            value={this.props.user.email}
                             editable={false}
                             style={{textAlign:'right'}}
                         >邮箱(选填)</InputItem>
@@ -47,7 +74,8 @@ class DetailUserMsg extends React.Component {
                             editable={false}
                             labelNumber={5}
                             style={{textAlign:'right'}}
-                            value='广东省深圳市罗湖区xx街道xx栋xx室xx'                        />
+                            value={this.props.user.address}
+                        />
                     </List>
                 </div>
 
@@ -59,27 +87,27 @@ class DetailUserMsg extends React.Component {
                     </header>
                     <List >
                         <InputItem
-                            value="6217********800"
+                            value={this.props.user.bankNo}
                             editable={false}
                             style={{textAlign:'right'}}
                         >结算卡号</InputItem>
                         <InputItem
-                            value="中国银行"
+                            value={this.props.user.bankName}
                             editable={false}
                             style={{textAlign:'right'}}
                         >银行名称</InputItem>
                         <InputItem
-                            value="广东省"
+                            value={this.props.user.realName}
                             editable={false}
                             style={{textAlign:'right'}}
                         >开户省份</InputItem>
                         <InputItem
-                            value="深圳市"
+                            value={this.props.user.realName}
                             editable={false}
                             style={{textAlign:'right'}}
                         >开户市区</InputItem>
                         <InputItem
-                            value="香蜜支行"
+                            value={this.props.user.branch}
                             editable={false}
                             style={{textAlign:'right'}}
                         >开户行</InputItem>
@@ -95,11 +123,16 @@ class DetailUserMsg extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-    return {}
+    return {
+        user:state.user
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+        setAuthFrom:bindActionCreators(setAuthFrom, dispatch),
+        getDetailMsg:bindActionCreators(getDetailMsg, dispatch)
+    }
 }
 
 DetailUserMsg = connect(mapStateToProps, mapDispatchToProps)(DetailUserMsg)

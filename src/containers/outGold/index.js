@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {List, InputItem, Button, WingBlank, Toast} from 'antd-mobile'
 import {hashHistory} from 'react-router'
 import Header from '../../components/header'
+import {setAuthFrom} from '../../actions/authFrom'
+import {bindActionCreators} from 'redux'
 
 
 class OutGold extends React.Component {
@@ -12,6 +14,20 @@ class OutGold extends React.Component {
         this.state = {
             outGoldValue:'',
             outGoldPwd:''
+        }
+    }
+
+    componentWillMount(){
+        if(!this.props.user.token){
+            this.props.setAuthFrom('/outgold',()=>{
+                hashHistory.push('/auth')
+            })
+        }else{
+            if(this.props.user.status==='27'){
+
+            }else {
+                hashHistory.push('/getAccount')
+            }
         }
     }
 
@@ -100,13 +116,14 @@ class OutGold extends React.Component {
 
 function mapStateToProps(state, props) {
     return {
-        foreignExchange: state.foreignExchange
+        foreignExchange: state.foreignExchange,
+        user:state.user
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-
+        setAuthFrom:bindActionCreators(setAuthFrom, dispatch)
     }
 }
 

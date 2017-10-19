@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import {List, InputItem, Button, WingBlank, NoticeBar, Picker, Toast} from 'antd-mobile';
 import {hashHistory} from 'react-router'
 import Header from '../../components/header'
-
+import {setAuthFrom} from '../../actions/authFrom'
+import {bindActionCreators} from 'redux'
 
 class InGold extends React.Component {
     constructor(props) {
@@ -72,7 +73,13 @@ class InGold extends React.Component {
         )
 
     }
-
+    componentWillMount(){
+        if(!this.props.user.token){
+            this.props.setAuthFrom('/ingold',()=>{
+                hashHistory.push('/auth')
+            })
+        }
+    }
     onPickerChange = (val) => {
         console.log(val);
         let colNum = 1;
@@ -95,12 +102,15 @@ class InGold extends React.Component {
 
 function mapStateToProps(state, props) {
     return {
-        foreignExchange: state.foreignExchange
+        foreignExchange: state.foreignExchange,
+        user:state.user
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+        setAuthFrom:bindActionCreators(setAuthFrom, dispatch)
+    }
 }
 
 InGold = connect(mapStateToProps, mapDispatchToProps)(InGold)

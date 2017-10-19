@@ -2,8 +2,11 @@ import React from 'react'
 import style from "./index.css"
 import {connect} from 'react-redux'
 import {hashHistory} from 'react-router'
-import { List,InputItem,WingBlank,Button,ImagePicker,Picker} from "antd-mobile"
+import { List,InputItem,WingBlank,Button,Toast,Picker} from "antd-mobile"
 import { Uploader,UploadField } from '@navjobs/upload'
+import axios from '../../common/axiosConf'
+import {getAccounded,getBankList} from '../../actions/foreignExchange'
+import {bindActionCreators} from 'redux'
 
 const data = [
 ];
@@ -61,10 +64,27 @@ class BankCardMsg extends React.Component {
         super(props);
         this.state = {
             files: data,
-            upImg:true
+            bankFrontImg:'',
+            bankNo:'',
+            bankCode:'ABC',
+            accountPovince:'',
+            accountCity:'',
+            branch:''
+
         }
     }
 
+    componentDidMount(){
+        this.props.getBankList({
+
+        }, (errorText) => {
+            if (errorText) {
+                Toast.fail(errorText, 3, null, false)
+            } else {
+                hashHistory.push('/')
+            }
+        })
+    }
     onChange = (files, type, index) => {
         console.log(files, type, index);
         this.setState({
@@ -73,7 +93,46 @@ class BankCardMsg extends React.Component {
         });
     }
     submitFn(){
-        hashHistory.push('/resultsPage')
+        const params = Object.assign({},this.props.getAccountParams,this.state)
+        console.log('35435',params)
+        Toast.loading('',  0)
+        this.props.getAccounded({
+            params
+        }, (errorText) => {
+            Toast.hide()
+            if (errorText) {
+                Toast.fail(errorText, 3, null, false)
+            } else {
+                hashHistory.push('/')
+            }
+        })
+
+        // axios.post('http://47.91.236.245:4030/user/customer/', {
+        //     sms_captcha: params.code,
+        //     email:params.email,
+        //     bank_code: params.code,
+        //     bank_card: params.bankNo,
+        //     bank_card_face: params.bankFrontImg,
+        //     id_card: params.id,
+        //     id_card_face: params.frontImg,
+        //     id_card_back: params.reverseImg,
+        //     real_name: params.realName
+        // })
+        //     .then(function (response) {
+        //         if (response.data.code === 0) {
+        //             hashHistory.push('/resultsPage')
+        //         } else {
+        //
+        //         }
+        //     })
+        //     .catch(function (error) {
+        //         alert(error);
+        //     });
+
+
+        return false
+
+
     }
     render() {
         const { files } = this.state;
@@ -92,7 +151,7 @@ class BankCardMsg extends React.Component {
                             <Uploader
                                 request={{
                                     fileName: 'file',
-                                    url: 'https://upload.com',
+                                    url: 'http://47.91.236.245:4030/user/uploads',
                                     method: 'POST',
                                     fields: {
                                         //extra fields to pass with the request
@@ -100,12 +159,14 @@ class BankCardMsg extends React.Component {
                                     },
                                     headers: {
                                         //custom headers to send along
-                                        Authorization: 'Bearer: Test',
+                                        //Authorization: 'Bearer: Test',
                                     },
                                     // use credentials for cross-site requests
-                                    withCredentials: false,
+                                    withCredentials: true,
                                 }}
-                                onComplete={({ response, status }) => {}}
+                                onComplete={({ response, status }) => {
+                                    this.setState({bankFrontImg:response.data})
+                                }}
                                 //upload on file selection, otherwise use `startUpload`
                                 uploadOnSelection={true}
                             >
@@ -113,11 +174,9 @@ class BankCardMsg extends React.Component {
                                     <div>
                                         <UploadField onFiles={onFiles}>
                                             <div className={style.selimg}>
-                                                {this.state.upImg? <img src={require('../../containers/home/images/MT4bg3X.png')} alt=""/> : <span className={style.filetext}>点击上传银行卡正面</span>}
+                                                {this.state.bankFrontImg? <img src={`http://47.91.236.245:4030/${this.state.bankFrontImg}`} alt=""/> : <span className={style.filetext}>点击上传银行卡正面</span>}
                                             </div>
                                         </UploadField>
-                                        {progress ? `Progress: ${progress}` : null}
-                                        {complete ? 'Complete!' : null}
                                     </div>
                                 )}
                             </Uploader>
@@ -129,6 +188,7 @@ class BankCardMsg extends React.Component {
                         placeholder="输入银行卡号"
                         type="number"
                         style={{textAlign:"right"}}
+                        onChange={(value)=>{this.setState({bankNo:value})}}
                     >结算卡号</InputItem>
                     <Picker data={bank} cols={1} className="forss" onOk={() => this.setState({ visible: false })}
                             onDismiss={() => this.setState({ visible: false })}>
@@ -146,6 +206,7 @@ class BankCardMsg extends React.Component {
                         type="text"
                         placeholder="输入开户行"
                         style={{textAlign:"right"}}
+                        onChange={(value)=>{this.setState({branch:value})}}
                     >开户行</InputItem>
 
                 </List>
@@ -162,11 +223,16 @@ class BankCardMsg extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-    return {}
+    return {
+        getAccountParams:state.foreignExchange.getAccountParams
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+    return {
+        getAccounded: bindActionCreators(getAccounded, dispatch),
+        getBankList: bindActionCreators(getBankList, dispatch)
+    }
 }
 
 BankCardMsg = connect(mapStateToProps, mapDispatchToProps)(BankCardMsg)

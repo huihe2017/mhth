@@ -75,7 +75,7 @@ class SpeedBankCard extends React.Component {
                         <Uploader
                             request={{
                                 fileName: 'file',
-                                url: 'https://upload.com',
+                                url: 'http://47.91.236.245:4030/user/uploads',
                                 method: 'POST',
                                 fields: {
                                     //extra fields to pass with the request
@@ -83,10 +83,10 @@ class SpeedBankCard extends React.Component {
                                 },
                                 headers: {
                                     //custom headers to send along
-                                    Authorization: 'Bearer: Test',
+                                    //Authorization: 'Bearer: Test',
                                 },
                                 // use credentials for cross-site requests
-                                withCredentials: false,
+                                withCredentials: true,
                             }}
                             onComplete={({ response, status }) => {}}
                             //upload on file selection, otherwise use `startUpload`
