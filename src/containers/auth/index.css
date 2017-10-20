@@ -104,4 +104,13 @@
     z-index: 20;
 
 }
+:local(.fp){
+    float: right;
+
+}
+:local(.fp)>a{
+    font-size: 14px;
+    line-height: 30px;
+    color: #5262ff;
+}
 

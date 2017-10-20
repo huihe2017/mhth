@@ -5,7 +5,7 @@ import {List, InputItem, Button, Picker, Toast} from 'antd-mobile';
 import {login, register} from '../../actions/user'
 import {setResultsPage} from '../../actions/resultsPage'
 import {bindActionCreators} from 'redux'
-import {hashHistory} from 'react-router'
+import {hashHistory, Link} from 'react-router';
 import Header from '../../components/header'
 import Countdown from '../../components/countdown'
 
@@ -222,6 +222,11 @@ class Auth extends React.Component {
                             }
                         </Button>
 
+                    </div>
+                    <div className={style.fp} hidden={this.state.login?false:true}>
+                        <Link to='/forgetPwd'>
+                            忘记密码?
+                        </Link>
                     </div>
                 </section>
             </div>
