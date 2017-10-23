@@ -7,19 +7,21 @@ import Header from '../../components/header'
 class ForgetPwd extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            areaCode: [86],
+        }
     }
 
     render() {
         const quhao=[
             {
-                value:1,
+                value:86,
                 label:"中国大陆  +86"
             },{
-                value:2,
+                value:87,
                 label:"中国台湾  +87"
             },{
-                value:3,
+                value:88,
                 label:"中国香港  +88"
             },
 
@@ -34,14 +36,22 @@ class ForgetPwd extends React.Component {
                         </span>
                         <div className={style.selphone}>
                             <div className={style.qh}>
-                                <Picker data={quhao} cols={1} className="forss">
-                                    <List.Item arrow="horizontal"> </List.Item>
+                                <Picker onChange={(value) => {
+                                    this.setState({areaCode: value})
+
+                                }} format={(values) => {
+                                    console.log(values)
+                                    return values.join('').split(' ')[2]
+                                }} data={quhao} cols={1} value={this.state.areaCode} defaultValue="1">
+                                    <List.Item arrow="horizontal"></List.Item>
                                 </Picker>
                             </div>
                             <div className={style.line}></div>
                             <div className={style.phone}>
                                 <List>
-                                    <InputItem placeholder="请输入手机号" type="number"></InputItem>
+                                    <InputItem onChange={(value) => {
+                                        this.setState({phone: value})
+                                    }} placeholder="请输入手机号" type="number"></InputItem>
                                 </List>
                             </div>
                         </div>
